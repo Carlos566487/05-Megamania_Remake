@@ -1,0 +1,38 @@
+# ─── Ambiente ───────────────────────────────────
+.env
+.env.local
+.env.*.local
+
+# ─── Dependências (não se aplica agora, mas previne futuros) ───
+node_modules/
+bower_components/
+
+# ─── Build / dist ───────────────────────────────
+dist/
+build/
+out/
+.cache/
+
+# ─── Logs ───────────────────────────────────────
+*.log
+logs/
+npm-debug.log*
+
+# ─── Editores ───────────────────────────────────
+.vscode/
+.idea/
+*.suo
+*.user
+*.swp
+*.swo
+*~
+
+# ─── Sistema Operacional ────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Temporários ────────────────────────────────
+*.tmp
+*.bak
+*.orig
