@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MEGAMANIA REMAKE — Pixel Shooter</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Press Start 2P', monospace;
+      overflow: hidden;
+    }
+    #game-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+    #hud-top {
+      width: 480px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      background: #0a0a0a;
+      border: 2px solid #333;
+      border-bottom: none;
+    }
+    #score-label { color: #ff0; font-size: 8px; }
+    #score-val { color: #fff; font-size: 10px; }
+    #level-label { color: #0ff; font-size: 8px; }
+    #level-val { color: #fff; font-size: 10px; }
+    #lives-label { color: #f80; font-size: 8px; }
+    #lives-val { color: #fff; font-size: 10px; }
+    canvas {
+      display: block;
+      border: 2px solid #333;
+      border-top: none;
+      border-bottom: none;
+      image-rendering: pixelated;
+    }
+    #hud-bottom {
+      width: 480px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      background: #0a0a0a;
+      border: 2px solid #333;
+      border-top: none;
+    }
+    #energy-label { color: #0f0; font-size: 8px; white-space: nowrap; margin-right: 8px; }
+    #energy-bar-bg {
+      flex: 1;
+      height: 14px;
+      background: #111;
+      border: 2px solid #333;
+      overflow: hidden;
+    }
+    #energy-bar-fill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #f00, #ff0, #0f0);
+      transition: width 0.1s linear;
+    }
+    #wave-label { color: #f0f; font-size: 8px; white-space: nowrap; margin-left: 8px; }
+    #overlay {
+      position: absolute;
+      top: 36px;
+      left: 0;
+      width: 480px;
+      height: 520px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.85);
+      z-index: 10;
+    }
+    #overlay h1 {
+      font-size: 20px;
+      color: #ff0;
+      text-shadow: 0 0 20px #ff0;
+      margin-bottom: 24px;
+      text-align: center;
+      line-height: 1.6;
+    }
+    #overlay p {
+      font-size: 9px;
+      color: #aaa;
+      margin-bottom: 10px;
+      text-align: center;
+      line-height: 2;
+    }
+    #overlay .sub {
+      font-size: 9px;
+      color: #0ff;
+      margin-top: 16px;
+      animation: blink 1s infinite;
+    }
+    #overlay .score-final { font-size: 11px; color: #f80; margin: 12px 0; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .stars-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+  </style>
+</head>
+<body>
+<div id="game-wrapper">
+  <div id="hud-top">
+    <span id="score-label">SCORE&nbsp;<span id="score-val">0</span></span>
+    <span id="level-label">LEVEL&nbsp;<span id="level-val">1</span></span>
+    <span id="lives-label">LIVES&nbsp;<span id="lives-val">❤❤❤</span></span>
+  </div>
+  <canvas id="gameCanvas" width="480" height="520"></canvas>
+  <div id="hud-bottom">
+    <span id="energy-label">ENERGY</span>
+    <div id="energy-bar-bg"><div id="energy-bar-fill"></div></div>
+    <span id="wave-label" id="wave-label">WAVE&nbsp;<span id="wave-val">1</span></span>
+  </div>
+  <div id="overlay">
+    <h1>MEGAMANIA<br>REMAKE</h1>
+    <p>← → MOVER&nbsp;&nbsp;&nbsp;SPACE ATIRAR</p>
+    <p>Destrua as ondas de inimigos!</p>
+    <p>Mantenha a energia cheia!</p>
+    <div class="sub">— PRESSIONE ESPAÇO —</div>
+  </div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
